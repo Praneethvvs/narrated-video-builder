@@ -1,0 +1,29 @@
+{{HEAD}}
+<!-- Hand-written scene. {{HEAD}} and {{FOOT}} are filled by the builder; data-at uses cue names from the
+     segment's lines (each cue = when that line starts speaking), optionally +/- seconds. -->
+<style>
+.chart { position: absolute; left: 130px; top: 300px; width: 1660px; height: 420px; display: flex; align-items: flex-end; gap: 26px;
+         border-bottom: 3px solid var(--rule); }
+.bar { flex: 1; background: var(--accent); border-radius: 8px 8px 0 0; }
+.bar.first { background: var(--muted); }
+.lbl { position: absolute; top: 210px; font-size: 44px; font-weight: 700; }
+</style></head><body>
+<div class="top"></div><div class="step">Part 2 · A worked example</div>
+<div class="wrap"><h1 data-at="0">$1,000 at 10% a year</h1></div>
+<div class="chart">
+  <div class="bar first" style="height: 38.5%" data-anim="grow-y" data-at="start+0.3"></div>
+  <div class="bar" style="height: 42.4%" data-anim="grow-y" data-at="y1"></div>
+  <div class="bar" style="height: 46.6%" data-anim="grow-y" data-at="y10+0.00" data-dur="0.4"></div>
+  <div class="bar" style="height: 51.3%" data-anim="grow-y" data-at="y10+0.15" data-dur="0.4"></div>
+  <div class="bar" style="height: 56.4%" data-anim="grow-y" data-at="y10+0.30" data-dur="0.4"></div>
+  <div class="bar" style="height: 62.1%" data-anim="grow-y" data-at="y10+0.45" data-dur="0.4"></div>
+  <div class="bar" style="height: 68.3%" data-anim="grow-y" data-at="y10+0.60" data-dur="0.4"></div>
+  <div class="bar" style="height: 75.1%" data-anim="grow-y" data-at="y10+0.75" data-dur="0.4"></div>
+  <div class="bar" style="height: 82.6%" data-anim="grow-y" data-at="y10+0.90" data-dur="0.4"></div>
+  <div class="bar" style="height: 90.9%" data-anim="grow-y" data-at="y10+1.05" data-dur="0.4"></div>
+  <div class="bar" style="height: 100%" data-anim="grow-y" data-at="y10+1.20" data-dur="0.4"></div>
+</div>
+<div class="lbl" style="left:130px" data-anim="count" data-from="1000" data-to="1100" data-fmt="usd" data-at="y1"></div>
+<div class="lbl accent" style="right:130px" data-anim="count" data-from="1100" data-to="2594" data-fmt="usd" data-dur="1.6" data-at="y10"></div>
+{{FOOT}}
+</body></html>

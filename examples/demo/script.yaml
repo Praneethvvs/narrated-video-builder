@@ -1,0 +1,120 @@
+# Demo project: a one-minute explainer that exercises every built-in template and one hand-written scene.
+# Build it with:  python <skill>/scripts/build.py all <this folder>
+name: demo
+title: Compound interest in one minute
+voice: am_michael
+speed: 1.12          # brisk tutorial pace
+gap: 0.25            # silence between lines
+number_hold: 0.8     # used by lines with `hold: true`
+step_pause: 0.35     # used by lines with `pause: true`
+footer_left: Demo explainer
+footer_right: Illustrative numbers
+segments:
+  - id: intro
+    kind: scene
+    template: title
+    chapter: Welcome
+    data:
+      title: Compound interest
+      subtitle: Why money grows faster over time
+      items: [The idea, One worked example, What changes the result]
+      items_cue: plan
+    lines:
+      - say: In the next minute you'll see why savings grow faster the longer you leave them.
+      - cue: plan
+        say: We'll cover the idea, one worked example, and what changes the result.
+
+  - id: card1
+    kind: scene
+    template: card
+    chapter: 1 · The idea
+    duration: 2.2
+    data: {label: Part 1, name: The idea}
+
+  - id: idea
+    kind: scene
+    template: bullets
+    data:
+      step: Part 1 · The idea
+      title: Interest on interest
+      sub: Each year's interest joins the balance
+      points:
+        - {cue: p1, text: "Simple interest pays on the starting amount only."}
+        - {cue: p2, text: "Compound interest pays on the starting amount <b>and</b> past interest."}
+      recap: {cue: rc, text: "<b>Recap:</b> compounding means interest earns interest."}
+    lines:
+      - cue: p1
+        say: Simple interest pays you on the amount you started with, and nothing more.
+      - cue: p2
+        say: Compound interest also pays you on the interest you've already earned.
+      - cue: rc
+        say: So, interest earns interest. Let's put numbers on it.
+
+  - id: growth
+    kind: scene
+    html: growth.html        # hand-written scene in scenes/
+    chapter: 2 · A worked example
+    lines:
+      - cue: start
+        say: Start with one thousand dollars at ten percent a year.
+        sub: Start with $1,000 at 10% a year.
+      - cue: y1
+        say: After one year you have eleven hundred.
+        sub: After one year you have $1,100.
+        hold: true
+      - cue: y10
+        say: After ten years, about two thousand five hundred ninety.
+        sub: After ten years, about $2,594.
+        hold: true
+
+  - id: calc
+    kind: scene
+    template: calc
+    data:
+      step: Part 2 · A worked example
+      title: "The calculation"
+      question: How the ten-year figure is built
+      formula:
+        - {cue: s1, text: "1,000"}
+        - {cue: s2, text: "&times; (1 + 10%)"}
+        - {cue: s3, text: "<sup>10</sup>"}
+      rows:
+        - {cue: s1, label: "Starting amount", value: {count: [0, 1000], fmt: usd}}
+        - {cue: s2, label: "Growth factor per year", value: "1.10"}
+        - {cue: s3, label: "Ten years: 1.10 to the power of 10", value: {count: [1000, 2594], fmt: usd}}
+      meaning: {cue: mean, text: "Ten years more than doubles the money without adding a dollar."}
+    lines:
+      - cue: s1
+        say: "Step one: the starting amount, one thousand dollars."
+        sub: "Step one: the starting amount, $1,000."
+        pause: true
+      - cue: s2
+        say: "Step two: each year multiplies the balance by one point one."
+        pause: true
+      - cue: s3
+        say: "Step three: do that ten times, and you reach about two thousand five hundred ninety-four."
+        sub: "Step three: do that ten times, and you reach about $2,594."
+        pause: true
+        hold: true
+      - cue: mean
+        say: In plain words, the money more than doubles without adding a dollar.
+
+  - id: levers
+    kind: scene
+    template: cards
+    chapter: 3 · What changes the result
+    data:
+      step: Part 3 · What changes the result
+      title: Two levers
+      sub: The rate and the time
+      cards:
+        - {cue: rate, tag: Rate, color: blue, title: A higher rate, text: "Each year's multiplier is bigger."}
+        - {cue: time, tag: Time, color: green, title: More years, text: "The multiplier is applied more times."}
+      recap: {cue: rc, text: "<b>Recap:</b> start early and let time do the work."}
+    lines:
+      - cue: rate
+        say: A higher rate makes each year's step bigger.
+      - cue: time
+        say: More years apply that step more times, and time is the stronger lever.
+      - cue: rc
+        say: That's compound interest. Start early, and let time do the work.

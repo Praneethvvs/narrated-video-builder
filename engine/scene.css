@@ -1,0 +1,51 @@
+/* Scene stylesheet: light, conventional, one accent plus greys; green/red for kept/lost.
+   Override the palette per project with `palette:` in script.yaml (injected as CSS variables). */
+:root { --accent: #2a78d6; --accent-soft: #dbe8f8; --loss: #e34948; --kept: #1baf7a; --warm: #eb6834;
+        --ink: #0b0b0b; --ink2: #52514e; --muted: #8a8984; --surface: #fcfcfb; --rule: #e6e5e1; --panel: #f6f8fc; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; }
+body { background: var(--surface); color: var(--ink); font-family: 'Segoe UI', 'Lato', Arial, sans-serif; position: relative; }
+.top { position: absolute; top: 0; left: 0; right: 0; height: 12px; background: var(--accent); }
+.step { position: absolute; top: 46px; left: 130px; font-size: 26px; font-weight: 700; letter-spacing: 2px;
+        text-transform: uppercase; color: var(--accent); }
+.wrap { position: absolute; top: 96px; left: 130px; right: 130px; bottom: 140px; }
+h1 { font-size: 70px; font-weight: 700; letter-spacing: -1px; margin-bottom: 10px; }
+.sub { font-size: 34px; color: var(--ink2); margin-bottom: 40px; }
+.foot { position: absolute; bottom: 36px; left: 130px; right: 130px; font-size: 22px; color: var(--muted);
+        display: flex; justify-content: space-between; border-top: 2px solid var(--rule); padding-top: 16px; }
+.row { display: flex; gap: 40px; }
+.col { display: flex; flex-direction: column; gap: 24px; }
+.card { flex: 1; background: #ffffff; border: 2px solid var(--rule); border-radius: 22px; padding: 36px 42px;
+        box-shadow: 0 2px 10px rgba(15, 23, 42, .05); }
+.card h2 { font-size: 42px; margin-bottom: 14px; }
+.card p, .p { font-size: 33px; line-height: 1.45; color: var(--ink2); }
+.tag { display: inline-block; font-size: 24px; font-weight: 700; padding: 6px 18px; border-radius: 999px;
+       margin-bottom: 18px; letter-spacing: 1px; text-transform: uppercase; }
+.blue { background: var(--accent-soft); color: var(--accent); }
+.green { background: #d7f3e8; color: #0e7a55; }
+.amber { background: #fde3d6; color: #b4461b; }
+.grey { background: #eceff5; color: var(--ink2); }
+.red { color: var(--loss); } .accent { color: var(--accent); } .kept { color: var(--kept); }
+.mono { font-family: 'Cascadia Mono', Consolas, monospace; }
+.big { font-size: 64px; font-weight: 700; }
+.huge { font-size: 110px; font-weight: 700; letter-spacing: -2px; }
+.note { font-size: 28px; color: var(--ink2); }
+.pill { display: inline-block; font-size: 30px; background: var(--panel); border: 2px solid var(--rule); border-radius: 14px; padding: 10px 22px; }
+.recap { position: absolute; left: 0; right: 0; top: 760px; background: #f1f6fd; border-left: 8px solid var(--accent); border-radius: 12px;
+         padding: 18px 28px; font-size: 30px; color: var(--ink); }
+.recap b { color: var(--accent); }
+[data-anim] { will-change: opacity, transform; }
+[data-anim="grow-x"] { transform-origin: left center; }
+[data-anim="grow-y"] { transform-origin: center bottom; }
+/* highlight ring driven by --hl (0..1), use with data-anim="hl" */
+.hlbox { --hl: 0; box-shadow: 0 0 0 calc(var(--hl) * 6px) rgba(245, 158, 11, calc(var(--hl) * 0.55)); border-radius: 14px; }
+/* strike-through driven by --strike (0..1), animate with window.build */
+.strike { --strike: 0; position: relative; }
+.strike::after { content: ''; position: absolute; left: -4px; top: 52%; height: 5px; background: var(--loss);
+                 width: calc(var(--strike) * (100% + 8px)); }
+table.t { border-collapse: collapse; font-size: 32px; }
+table.t td, table.t th { padding: 12px 26px; text-align: right; }
+table.t th { color: var(--ink2); font-weight: 600; border-bottom: 3px solid var(--rule); }
+table.t td:first-child, table.t th:first-child { text-align: left; }
+table.t tr.total td { border-top: 4px solid var(--ink); font-weight: 700; }
+svg text { font-family: 'Segoe UI', Arial, sans-serif; }
